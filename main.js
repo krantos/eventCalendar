@@ -20,7 +20,7 @@ function paintSelect(event) {
     if (previous_active != undefined) {
         previous_active.classList.remove("active");
     }
-    event.target.className = "active";
+    event.target.classList.add("active");
 
 }
 
