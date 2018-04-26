@@ -1,0 +1,35 @@
+table {
+    border-collapse: collapse;
+}
+td, th {
+    border: 1px solid black;
+}
+td {
+    width: 100px;
+    height: 100px;
+}
+#next, #previous {
+    width: 30px;
+}
+
+.dia_nombre, #mes_nombre {
+    height: 20px;
+    text-align: center;
+}
+
+#button_previous, #button_next {
+    cursor: pointer;
+    height: 100%;
+    width: 100%;
+}
+.dias > td:hover {
+    cursor: pointer;
+    background-color: cyan; 
+}
+.no_day {
+    background-color: #e6e6e6;
+}
+
+.today {
+    background-color: #c15ac1;
+}
