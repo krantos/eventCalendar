@@ -1,4 +1,4 @@
-window.addEventListener("load", function () {
+window.addEventListener("load", function() {
 
     let next_button = document.querySelector('#button_next');
     next_button.addEventListener("click", nextMonth);
@@ -15,9 +15,13 @@ window.addEventListener("load", function () {
 });
 
 function paintSelect(event) {
-    console.log(event.target);
-    let previous_active = document.getElementsByClassName("active");
-    console.log(previous_active);
+
+    let previous_active = document.getElementsByClassName("active")[0];
+    if (previous_active != undefined) {
+        previous_active.classList.remove("active");
+    }
+    event.target.className = "active";
+
 }
 
 let date = new Date();
@@ -26,7 +30,7 @@ let date = new Date();
 let year_number = date.getFullYear();
 // let month_number = date.getMonth();
 let month_number = date.getMonth();
-    
+
 let week_days = new Array(7);
 week_days[0] = 'Domingo';
 week_days[1] = 'Lunes';
@@ -53,12 +57,12 @@ month_name[11] = 'Diciembre';
 let month = document.querySelector('#mes_nombre');
 
 
-function nextMonth () {
+function nextMonth() {
     cleanCalendar();
     let month = document.querySelector('#mes_nombre');
     let actual_month = month.getAttribute('data-month');
     let next_month = parseInt(actual_month) + 1;
-    if( next_month > 11 ) {
+    if (next_month > 11) {
         next_month = 0;
         year_number++;
     }
@@ -70,7 +74,7 @@ function previousMonth() {
     let month = document.querySelector('#mes_nombre');
     let actual_month = month.getAttribute('data-month');
     let next_month = parseInt(actual_month) - 1;
-    if( next_month < 0 ) {
+    if (next_month < 0) {
         next_month = 11;
         year_number--;
     }
@@ -84,33 +88,33 @@ function cleanCalendar() {
 
 function createCalendar(month_number, year_number) {
     let first_day_month = new Date(
-        year_number, 
-        month_number, 
+        year_number,
+        month_number,
         1);
-    
+
     let month = document.querySelector('#mes_nombre');
 
     let day_of_week_first_day_month = first_day_month.getDay();
 
     const nodeList_of_td = document.querySelectorAll('td');
-    
+
     const array_of_td = Array.from(nodeList_of_td);
-    
-    let month_days = new Date(year_number, month_number+1, 0);
+
+    let month_days = new Date(year_number, month_number + 1, 0);
 
     let amount_of_days = month_days.getDate();
 
     let contador = day_of_week_first_day_month;
 
-    for (let index = 1 ; index <= amount_of_days; index++) {
-        if(index != null) {
+    for (let index = 1; index <= amount_of_days; index++) {
+        if (index != null) {
             document.querySelector('[id="' + contador + '"').innerText = index;
         }
         contador++;
     }
 
     month.innerText = month_name[month_number] + " - " + year_number;
-    month.setAttribute('data-month',month_number)
+    month.setAttribute('data-month', month_number)
     paintCalendar();
 }
 
@@ -127,11 +131,11 @@ function paintToday() {
     let today_date = new Date();
     let month = document.querySelector('#mes_nombre');
     let actual_month = month.getAttribute('data-month');
-    if(today_date.getMonth() == actual_month){
+    if (today_date.getMonth() == actual_month) {
         let td = document.querySelectorAll('.dias > td');
         let td_array = Array.from(td);
         let today = td_array.filter(d => (d.innerText == today_date.getDate()))[0];
-        today.setAttribute('class', 'today');
-        
+        today.setAttribute('class', 'today active');
+
     }
 }
