@@ -7,7 +7,18 @@ window.addEventListener("load", function () {
     previous_button.addEventListener("click", previousMonth);
 
     createCalendar(month_number, year_number);
+
+    let tds = document.querySelectorAll('.dias > td');
+    let tds_array = Array.from(tds);
+    tds_array.forEach(t => (t.addEventListener("click", paintSelect)));
+
 });
+
+function paintSelect(event) {
+    console.log(event.target);
+    let previous_active = document.getElementsByClassName("active");
+    console.log(previous_active);
+}
 
 let date = new Date();
 
