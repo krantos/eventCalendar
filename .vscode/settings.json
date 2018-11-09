@@ -1,0 +1,10 @@
+{
+  "window.zoomLevel": 0,
+  "workbench.iconTheme": "vscode-icons",
+  "vsicons.dontShowNewVersionMessage": true,
+  "editor.tabSize": 2,
+  "workbench.colorTheme": "Monokai",
+  "editor.detectIndentation": false,
+  "editor.autoIndent": false,
+  "editor.formatOnSave": false,
+}
