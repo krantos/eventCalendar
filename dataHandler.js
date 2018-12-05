@@ -4,6 +4,7 @@ window.addEventListener("load", function () {
 });
 
 let fecha_actual = '';
+let allEventsData = [];
 
 function eventoDataHandler() {
   
@@ -17,9 +18,13 @@ function eventoDataHandler() {
 
 }
 
-function fullfillEvents(fecha) {
-  fecha_actual = fecha;
+function fullfillEvents(fecha = undefined) {
   getDataFromTheServer();
+  if(fecha) {
+    fecha_actual = fecha;
+      filtrarEventosPorFecha();
+  }
+  agregarEventosEnTabla();
 }
 
 function getDataFromTheServer() {
@@ -37,18 +42,16 @@ function getDataFromTheServer() {
   }
 
     function populateData(jsonObj) {
-      const allEvents = jsonObj;
-      paintDayWithEvent(allEvents);
-      filtrarEventosPorFecha(allEvents);
-      agregarEventosEnTabla();
+      allEventsData = jsonObj;
+      paintDayWithEvent();
   }
 
-  function filtrarEventosPorFecha (datosObj) {
+  function filtrarEventosPorFecha () {
       const tabla_eventos = document.getElementById('tabla_de_eventos');
       tabla_eventos.innerHTML='';
       const details_eventos = document.getElementById('details');
       details_eventos.innerHTML = '';
-      const filtrado_fecha = datosObj.filter(ev => ev.fecha.includes(fecha_actual));
+      const filtrado_fecha = allEventsData.filter(ev => ev.fecha.includes(fecha_actual));
       filtrado_fecha.map((ev, i) => {
         const new_row = `
           <tr class="short_description" style="cursor: pointer;">
@@ -82,8 +85,8 @@ function getDataFromTheServer() {
     (document.getElementById(idChild)).classList.toggle('show');
   }
 
-  function paintDayWithEvent(allEvents) {
-    allEvents.forEach(element => {
+  function paintDayWithEvent() {
+    allEventsData.forEach(element => {
       const selector = `[data-date="${element.fecha}"]`;
       const recuadro_con_evento = document.querySelector(selector);
       if(recuadro_con_evento) {

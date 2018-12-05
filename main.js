@@ -87,6 +87,7 @@ function cleanCalendar() {
 }
 
 function createCalendar(month_number, year_number) {
+
   let first_day_month = new Date(
     year_number,
     month_number,
@@ -106,6 +107,10 @@ function createCalendar(month_number, year_number) {
 
   let contador = day_of_week_first_day_month;
 
+  array_of_td.forEach(element => {
+    element.removeAttribute('data-date');
+  });
+
   for (let index = 1; index <= amount_of_days; index++) {
     if (index != null) {
       const cuadro = document.querySelector('[id="' + contador + '"');
@@ -119,6 +124,7 @@ function createCalendar(month_number, year_number) {
   month.innerText = month_name[month_number] + " - " + year_number;
   month.setAttribute('data-month', month_number);
   paintCalendar();
+
 }
 
 function paintCalendar() {
@@ -141,4 +147,6 @@ function paintToday() {
     today.setAttribute('class', 'today active');
     fullfillEvents(`${today_date.getDate()}/${today_date.getMonth()+1}/${today_date.getFullYear()}`);
   }
+    fullfillEvents();
+
 }
