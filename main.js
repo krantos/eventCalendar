@@ -11,7 +11,7 @@ window.addEventListener("load", function () {
   let tds = document.querySelectorAll('.dias > td');
   let tds_array = Array.from(tds);
   tds_array.forEach(t => (t.addEventListener("click", paintSelect)));
-
+  getDataFromTheServer();
 });
 
 function paintSelect(event) {
@@ -21,6 +21,10 @@ function paintSelect(event) {
   }
   event.target.classList.add("active");
   const fecha = event.target.getAttribute('data-date');
+  const fecha_dia_tabla = `
+    Lista de Eventos - ${event.target.innerHTML} de ${document.getElementById('mes_nombre').innerHTML}
+  `;
+  document.getElementById('fecha_dia_tabla').innerHTML = fecha_dia_tabla;
   fullfillEvents(fecha);
 }
 
@@ -124,7 +128,6 @@ function createCalendar(month_number, year_number) {
   month.innerText = month_name[month_number] + " - " + year_number;
   month.setAttribute('data-month', month_number);
   paintCalendar();
-
 }
 
 function paintCalendar() {
@@ -147,6 +150,6 @@ function paintToday() {
     today.setAttribute('class', 'today active');
     fullfillEvents(`${today_date.getDate()}/${today_date.getMonth()+1}/${today_date.getFullYear()}`);
   }
-    fullfillEvents();
+  paintDayWithEvent();
 
 }

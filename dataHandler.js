@@ -19,7 +19,6 @@ function eventoDataHandler() {
 }
 
 function fullfillEvents(fecha = undefined) {
-  getDataFromTheServer();
   if(fecha) {
     fecha_actual = fecha;
       filtrarEventosPorFecha();
@@ -43,15 +42,17 @@ function getDataFromTheServer() {
 
     function populateData(jsonObj) {
       allEventsData = jsonObj;
+      console.log(allEventsData);
       paintDayWithEvent();
   }
 
   function filtrarEventosPorFecha () {
+      const localData = allEventsData;
       const tabla_eventos = document.getElementById('tabla_de_eventos');
       tabla_eventos.innerHTML='';
       const details_eventos = document.getElementById('details');
       details_eventos.innerHTML = '';
-      const filtrado_fecha = allEventsData.filter(ev => ev.fecha.includes(fecha_actual));
+      const filtrado_fecha = localData.filter(ev => ev.fecha.includes(fecha_actual));
       filtrado_fecha.map((ev, i) => {
         const new_row = `
           <tr class="short_description" style="cursor: pointer;">
@@ -86,7 +87,8 @@ function getDataFromTheServer() {
   }
 
   function paintDayWithEvent() {
-    allEventsData.forEach(element => {
+    const localData = allEventsData;
+    localData.forEach(element => {
       const selector = `[data-date="${element.fecha}"]`;
       const recuadro_con_evento = document.querySelector(selector);
       if(recuadro_con_evento) {
