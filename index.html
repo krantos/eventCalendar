@@ -7,8 +7,7 @@
   <title>Practice js</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-  <script src="main.js"></script>
-  <script src="dataHandler.js"></script>
+
 </head>
 
 <body>
@@ -102,23 +101,28 @@
       <br>
       <table>
         <thead>
-          <th>Hora</th>
-          <th>Evento</th>
+          <tr>
+            <th>Hora</th>
+            <th>Evento</th>
+          </tr>
         </thead>
-        <tbody>
+        <tbody id="tabla_de_eventos">
           <tr class="short-description" id="evento_1" style="cursor: pointer;">
             <td class="evento_hora">13:00</td>
             <td class="evento_titulo">Almuerzo en el Cafe La plazleta</td>
           </tr>
-          <tr>
-            <td colspan="2">
-
-            </td>
-          </tr>
         </tbody>
       </table>
+      <br>
+      <h3 id="fecha_completa">Detalles</h3>
+      <hr>
+      <br>
+      <div id="details">
+      </div>
     </div>
   </div>
+    <script src="dataHandler.js"></script>
+    <script src="main.js"></script>
 </body>
 
 </html>

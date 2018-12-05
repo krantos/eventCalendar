@@ -1,28 +1,39 @@
 <?php
 
-  $evento1 = array( "fecha" => "3/11/2018",
-                    "dia" => 3,
-                    "mes" => 11,
+  $evento1 = array( "id" => 1,
+                    "fecha" => "15/11/2018",
+                    "hora" => "18:30",
+                    "nombre"=> "React CoWorking Space",
+                    "precio"=> "150",
+                    "direccion"=> "Minerva Campus",
+                    "link"=> "minervacampus.com"
+                    );
+  
+  $evento2 = array( "id" => 2,
+                    "fecha" => "1/11/2018",
                     "hora" => "11:30",
                     "nombre"=> "Asado con los amigos",
                     "precio"=> "150",
                     "direccion"=> "la casa de juan",
                     "link"=> "lacasadejuan.com"
                     );
-  
-  $evento2 = array( "fecha" => "1/11/2018",
-                    "dia" => 1,
-                    "mes" => 11,
+  $evento3 = array( "id" => 3,
+                    "fecha" => "4/12/2018",
+                    "hora" => "18:30",
+                    "nombre"=> "Reunion con Alejandro",
+                    "precio"=> "50",
+                    "direccion"=> "algun cafe",
+                    "link"=> ""
+                    );
+  $evento4 = array( "id" => 4,
+                    "fecha" => "4/12/2018",
                     "hora" => "11:30",
-                    "nombre"=> "Asado con los amigos",
+                    "nombre"=> "Hoy nos pagan!",
                     "precio"=> "150",
-                    "direccion"=> "la casa de juan",
-                    "link"=> "lacasadejuan.com"
+                    "direccion"=> "tu empresa",
+                    "link"=> "gotocme.com"
                     );
   
-  $month1 = array($evento1, $evento2, $evento1, $evento2,$evento1, $evento2,$evento1, $evento2);
-  $month2 = array($evento1, $evento2);
-  $year = array("noviembre" => $month1, "diciembre" => $month2);
-
+  $year = array($evento1, $evento2, $evento3, $evento4);
 
   echo json_encode($year);
