@@ -127,6 +127,7 @@ function createCalendar(month_number, year_number) {
 
   month.innerText = month_name[month_number] + " - " + year_number;
   month.setAttribute('data-month', month_number);
+  month.setAttribute('data-year', year_number);
   paintCalendar();
 }
 
@@ -136,7 +137,13 @@ function paintCalendar() {
   let td_array = Array.from(td);
   let no_day = td_array.filter(d => (d.innerText == ""));
   no_day.forEach(d => d.setAttribute('class', 'no_day'));
-  paintToday();
+  const today = new Date();
+  const month = document.querySelector('#mes_nombre');
+  const yearDisplayed = month.getAttribute('data-year');
+  if(yearDisplayed.includes(today.getFullYear())) {
+    paintToday();
+  }
+  paintDayWithEvent();
 }
 
 function paintToday() {
@@ -150,6 +157,4 @@ function paintToday() {
     today.setAttribute('class', 'today active');
     fullfillEvents(`${today_date.getDate()}/${today_date.getMonth()+1}/${today_date.getFullYear()}`);
   }
-  paintDayWithEvent();
-
 }
